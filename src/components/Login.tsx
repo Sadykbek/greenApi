@@ -3,10 +3,11 @@ interface LoginProps {
    idInstance : Number;
    apiTokenInstance : string;
 }
-export default function Login() {
+export default function Login({ onSave }: any) {
    const { register, handleSubmit, watch, formState: { errors }} = useForm();
    const onSubmit = (data: LoginProps) => {
       localStorage.setItem('regData', JSON.stringify(data));
+      onSave(data);
    }
    return(
       < form className="regForm" onSubmit={handleSubmit(onSubmit)}>
